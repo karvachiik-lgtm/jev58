@@ -250,7 +250,9 @@ def _rr_top4_on() -> bool:   # [patch_loop] edit 15
 
 
 def _rr_is_draw(decided_by: str) -> bool:
-    return "DINO tie-break" in decided_by or "draw -> A" in decided_by
+    # every judge draw carries a tie-break note ("S1-residual tie-break", "DINO tie-break" or "draw -> A/B (order-free hash ...)");
+    # the round-robin keeps scoring tie-broken draws as draws, as before
+    return "tie-break" in decided_by or "draw -> " in decided_by
 
 
 def _rr_pick(top: list, res: dict, bracket_k):
